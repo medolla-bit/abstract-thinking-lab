@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abstract Thinking Lab</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="site-title">Abstract Thinking Lab <span>personification in motion</span></div>
+  </header>
+
+  <main>
+    <section class="lab-intro" aria-label="App focus">
+      <div class="lab-title">
+        <span>Noun</span>
+        <span>and</span>
+        <span>Voice</span>
+      </div>
+    </section>
+
+    <div class="btn-zone">
+      <button class="btn-main" onclick="generateBoth()">Generate Noun Picture</button>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <div class="preview-collage" aria-hidden="true">
+        <img src="images1/ambition.jpeg" alt="" />
+        <img src="images1/creativity.jpeg" alt="" />
+        <img src="images1/fear.jpeg" alt="" />
+      </div>
+      <span>Press Generate Noun Picture to begin</span>
+    </div>
+
+    <section id="contentPanel">
+      <article class="noun-card">
+        <div id="imageWrap"></div>
+        <div class="noun-copy">
+          <div class="noun-eyebrow">Personified Abstract Noun</div>
+          <h1 id="nounDisplay"></h1>
+          <p id="taglineText"></p>
+        </div>
+      </article>
+
+      <section class="prompt-workshop">
+        <div class="sense-tabs" id="senseTabs"></div>
+        <div class="prompt-box">
+          <div class="prompt-label" id="promptLabel"></div>
+          <div id="promptText"></div>
+          <p id="promptGuide"></p>
+        </div>
+      </section>
+
+      <div id="responseWrap">
+        <div class="response-label">My Response</div>
+        <textarea id="studentResponse" placeholder="Write your response here..." rows="6"></textarea>
+        <div id="printTyped"></div>
+        <div id="printLines">
+          <div class="rule-line"></div>
+          <div class="rule-line"></div>
+          <div class="rule-line"></div>
+          <div class="rule-line"></div>
+          <div class="rule-line"></div>
+          <div class="rule-line"></div>
+          <div class="rule-line"></div>
+        </div>
+      </div>
+
+      <section class="dialogue-panel">
+        <div class="dialogue-head">
+          <div>
+            <div class="response-label">OpenAI Dialogue</div>
+            <p>Use the student's own words to ask one deeper question, then shape a poem.</p>
+          </div>
+          <button class="btn-sub" id="btnPoem" onclick="makePoem()">Form Poem</button>
+        </div>
+        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-actions">
+          <button class="btn-main small" id="btnDig" onclick="digDeeper()">Dig Deeper</button>
+          <button class="btn-sub" onclick="clearDialogue()">Clear Dialogue</button>
+        </div>
+        <div class="ai-note" id="aiNote">OpenAI responses require a Netlify environment variable named OPENAI_API_KEY.</div>
+      </section>
+    </section>
+
+    <section class="class-session-panel">
+      <div class="session-head">
+        <div>
+          <div class="response-label">Joined Class Session</div>
+          <p>Students join with a code, submit their response, and the class can turn the collection into a summary or poem.</p>
+        </div>
+        <div class="session-code-pill" id="sessionStatus">No session</div>
+      </div>
+
+      <div class="session-grid">
+        <label>
+          <span>Student name</span>
+          <input id="studentName" type="text" maxlength="40" placeholder="First name or initials" autocomplete="name" />
+        </label>
+        <label>
+          <span>Session code</span>
+          <input id="sessionCode" type="text" maxlength="12" placeholder="ABC123" />
+        </label>
+      </div>
+
+      <div class="session-actions">
+        <button class="btn-main small" onclick="createClassSession()">Create Class Session</button>
+        <button class="btn-sub" onclick="joinClassSession()">Join Session</button>
+        <button class="btn-sub" onclick="submitClassResponse()">Submit Response</button>
+        <button class="btn-sub" onclick="refreshClassResponses()">Refresh Responses</button>
+      </div>
+
+      <div class="session-note" id="sessionNote">Create a session for the current prompt, or join with a code from your teacher.</div>
+
+      <div class="class-results" id="classResults">
+        <div class="class-stat"><strong id="responseCount">0</strong><span>responses recorded</span></div>
+        <div class="class-buttons">
+          <button class="btn-sub" onclick="summarizeClassResponses()">Class Summary</button>
+          <button class="btn-sub" onclick="makeClassPoem()">Class Poem</button>
+        </div>
+        <div class="class-output" id="classOutput"></div>
+        <div class="artifact-actions">
+          <button class="btn-sub" id="btnCopyClass" onclick="copyClassResponses()">Copy Responses</button>
+          <button class="btn-sub" id="btnCopyOutput" onclick="copyClassOutput()">Copy Summary/Poem</button>
+          <button class="btn-sub" onclick="printClassReport()">Print Class PDF</button>
+        </div>
+        <div class="response-list" id="responseList"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Abstract Thinking Lab &nbsp;&middot;&nbsp; Senses &nbsp;&middot;&nbsp; Metaphor &nbsp;&middot;&nbsp; Personification</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

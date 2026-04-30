@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "check": "node --check script.js && node --check netlify/functions/poetry-coach.js && node --check netlify/functions/class-session.js && node --check netlify/functions/live-config.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^10.0.10",
+    "@supabase/supabase-js": "^2.43.4"
+  }
+}
